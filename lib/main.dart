@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:x01_flutter_basics/pages/Page1/my_card/my_card.dart';
 import 'package:x01_flutter_basics/pages/Page2/view.dart';
 
 import 'pages/Page1/view.dart';
