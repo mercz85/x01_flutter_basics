@@ -45,4 +45,13 @@ get style from widget to modify it [styleFrom]
 [alertDialog] 
 how to add minHeight to a widget [minHeight]
 
-[appTheme]
+[appTheme] [colorScheme]
+0. Color from hex: #0A0E21 = 0xFF0A0E21  (ex. Color(0xFF0A0E21))
+1. Hex Opacity Values:
+   https://gist.github.com/creativecreatorormaybenot/8710f6f752f6a0f2cae13abb538f0e8e#hex-opacity-values
+2. Theme and ColorSchema
+  https://docs.flutter.dev/release/breaking-changes/theme-data-accent-properties
+3. Default values of ColorSheme.dark()
+  https://api.flutter.dev/flutter/material/ColorScheme/ColorScheme.dark.html
+
+FontAwesomeIcons [icons]

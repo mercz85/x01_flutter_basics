@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:x01_flutter_basics/pages/Page2/bmi_calculator/bmi_calculator.dart';
 import 'package:x01_flutter_basics/pages/Page2/quiz/quiz.dart';
 
 import '../../widgets/TabButton.dart';
@@ -81,7 +82,7 @@ class _Page2State extends State<Page2> {
                 child: QuizPage(),
               ),
               Container(
-                color: Colors.greenAccent,
+                child: BMICalculatorPage(),
               )
             ],
           ),

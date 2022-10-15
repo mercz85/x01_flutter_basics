@@ -4,17 +4,6 @@ import 'package:x01_flutter_basics/pages/Page2/view.dart';
 
 import 'pages/Page1/view.dart';
 
-/*
-NOTES
-1. Hex Opacity Values:
-   https://gist.github.com/creativecreatorormaybenot/8710f6f752f6a0f2cae13abb538f0e8e#hex-opacity-values
-#0A0E21 = 0xFF0A0E21
-2. Theme and ColorSchema
-  https://docs.flutter.dev/release/breaking-changes/theme-data-accent-properties
-3. Default values of ColorSheme.dark()
-  https://api.flutter.dev/flutter/material/ColorScheme/ColorScheme.dark.html
-*/
-
 //[snippets] mateapp --> creates a new almost empty MaterialApp
 void main() => runApp(MyApp());
 
@@ -38,15 +27,30 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     final Color baseColor = Color(0xFF0A0E21);
+
+    //[colorScheme] examples
     final ColorScheme colorScheme = ThemeData.dark().colorScheme.copyWith(
           primary: baseColor,
           secondary: Colors.purple,
           surface: baseColor,
         );
+
+    final ColorScheme colorSchemeSeed =
+        ColorScheme.fromSeed(seedColor: Colors.purple);
+
+    //[appTheme] examples
     final ThemeData theme = ThemeData.dark().copyWith(
       scaffoldBackgroundColor: baseColor,
       bottomAppBarColor: baseColor,
       colorScheme: colorScheme,
+    );
+
+    final ThemeData theme2 = ThemeData.from(
+      colorScheme: ColorScheme.fromSwatch(
+        primarySwatch: Colors.teal,
+        backgroundColor: const Color(0xFF09ED8A),
+        accentColor: Colors.purple,
+      ),
     );
 
     return MaterialApp(
@@ -61,7 +65,8 @@ class _MyAppState extends State<MyApp> {
         ),
         body: _pages[_currentPage],
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: theme.bottomAppBarColor, //************** */
+          // [appTheme]
+          backgroundColor: theme.bottomAppBarColor,
           type: BottomNavigationBarType.fixed, // > 3 BottomNavigationBarItems
           currentIndex: _currentPage,
           onTap: (index) {
