@@ -55,3 +55,8 @@ how to add minHeight to a widget [minHeight]
   https://api.flutter.dev/flutter/material/ColorScheme/ColorScheme.dark.html
 
 FontAwesomeIcons [icons]
+
+how to align text to baseline in Row [rowBaselinAlignText]
+[slider] 
+SliderTheme.of(context).copyWith(...) [sliderTheme]
+[doubleToInt]
