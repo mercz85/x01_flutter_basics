@@ -1,5 +1,7 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:x01_flutter_basics/pages/Page2/bmi_calculator/reusable_card.dart';
 
 import 'constants.dart';
@@ -17,6 +19,8 @@ class BMICalculatorPage extends StatefulWidget {
 class _BMICalculatorPageState extends State<BMICalculatorPage> {
   Gender selectedGender = Gender.none;
   int height = 150;
+  int weight = 60;
+  int age = 37;
 
   @override
   Widget build(BuildContext context) {
@@ -114,9 +118,83 @@ class _BMICalculatorPageState extends State<BMICalculatorPage> {
               children: [
                 ReusableCard(
                   color: kActiveCardColor,
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'WEIGHT',
+                        style: kLabelTextStyle,
+                      ),
+                      Text(
+                        weight.toString(),
+                        style: kNumberTextStyle,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RoundIconButton(
+                            iconData: Icons.remove,
+                            onPress: () {
+                              setState(() {
+                                weight--;
+                              });
+                            },
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          RoundIconButton(
+                            iconData: Icons.add,
+                            onPress: () {
+                              setState(() {
+                                weight++;
+                              });
+                            },
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ),
                 ReusableCard(
                   color: kActiveCardColor,
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'AGE',
+                        style: kLabelTextStyle,
+                      ),
+                      Text(
+                        age.toString(),
+                        style: kNumberTextStyle,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RoundIconButton(
+                            iconData: Icons.remove,
+                            onPress: () {
+                              setState(() {
+                                age--;
+                              });
+                            },
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          RoundIconButton(
+                            iconData: Icons.add,
+                            onPress: () {
+                              setState(() {
+                                age++;
+                              });
+                            },
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -129,6 +207,30 @@ class _BMICalculatorPageState extends State<BMICalculatorPage> {
           ),
         ],
       ),
+    );
+  }
+}
+
+//[buttonComposition]
+class RoundIconButton extends StatelessWidget {
+  final IconData iconData;
+  final void Function()? onPress;
+
+  const RoundIconButton({
+    Key? key,
+    required this.iconData,
+    this.onPress,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      onPressed: onPress,
+      elevation: 6,
+      fillColor: Color(0xFF4C4F5E),
+      shape: const CircleBorder(),
+      child: Icon(iconData),
+      constraints: const BoxConstraints(minHeight: 40, minWidth: 40),
     );
   }
 }

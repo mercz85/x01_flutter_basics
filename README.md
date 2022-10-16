@@ -60,3 +60,5 @@ how to align text to baseline in Row [rowBaselinAlignText]
 [slider] 
 SliderTheme.of(context).copyWith(...) [sliderTheme]
 [doubleToInt]
+
+compose a button from RawMaterialButton (instead of FAB)[buttonComposition]
