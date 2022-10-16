@@ -62,3 +62,5 @@ SliderTheme.of(context).copyWith(...) [sliderTheme]
 [doubleToInt]
 
 compose a button from RawMaterialButton (instead of FAB)[buttonComposition]
+
+ to see different 'views' in the same Tab clicking on button[extractMethod]
