@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:x01_flutter_basics/pages/Page2/bmi_calculator/calculator_brain.dart';
 import 'package:x01_flutter_basics/pages/Page2/bmi_calculator/reusable_card.dart';
 
 import 'constants.dart';
@@ -21,14 +22,26 @@ class BMICalculatorPage extends StatefulWidget {
 class _BMICalculatorPageState extends State<BMICalculatorPage> {
   Gender selectedGender = Gender.none;
   BMIView bmiView = BMIView.input;
+  late CalculatorBrain calculatorBrain;
 
   int height = 150;
   int weight = 60;
   int age = 37;
 
+  String resultBMI = '';
+  String resultText = '';
+  String resultInterpretation = '';
+
   void changeView(BMIView newView) {
     setState(() {
       bmiView = newView;
+      if (bmiView == BMIView.result) {
+        calculatorBrain = CalculatorBrain(height: height, weight: weight);
+
+        resultBMI = calculatorBrain.calculateBMI();
+        resultText = calculatorBrain.getResult();
+        resultInterpretation = calculatorBrain.getInterpretation();
+      }
     });
   }
 
@@ -265,17 +278,17 @@ class _BMICalculatorPageState extends State<BMICalculatorPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                'NORMAL',
+                resultText.toUpperCase(),
                 style: kResultTextStyle,
                 textAlign: TextAlign.center,
               ),
               Text(
-                '18.5',
+                resultBMI,
                 style: kBMITextStyle,
                 textAlign: TextAlign.center,
               ),
               Text(
-                'You should eat more!',
+                resultInterpretation,
                 textAlign: TextAlign.center,
               )
             ],
