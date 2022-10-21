@@ -63,4 +63,4 @@ SliderTheme.of(context).copyWith(...) [sliderTheme]
 
 compose a button from RawMaterialButton (instead of FAB)[buttonComposition]
 
- to see different 'views' in the same Tab clicking on button[extractMethod]
+ to see different 'views' in the same Tab clicking on button[extractMethod] and [Visibility] (https://stackoverflow.com/questions/44489804/how-to-show-hide-widgets-programmatically-in-flutter)

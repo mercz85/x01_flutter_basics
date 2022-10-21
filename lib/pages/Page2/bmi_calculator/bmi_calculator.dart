@@ -34,7 +34,19 @@ class _BMICalculatorPageState extends State<BMICalculatorPage> {
 
   @override
   Widget build(BuildContext context) {
-    return bmiView == BMIView.input ? inputView(context) : resultView(context);
+    return Stack(
+      children: [
+        //[Visibility]
+        Visibility(
+          visible: bmiView == BMIView.input ? true : false,
+          child: inputView(context),
+        ),
+        Visibility(
+          visible: bmiView == BMIView.result ? true : false,
+          child: resultView(context),
+        ),
+      ],
+    );
   }
 
   //[extractMethod] to see different 'views' in the same Tab
@@ -216,6 +228,7 @@ class _BMICalculatorPageState extends State<BMICalculatorPage> {
         GestureDetector(
           onTap: (() {
             changeView(BMIView.result);
+
             // Navigator.push(
             //   context,
             //   MaterialPageRoute(
@@ -245,7 +258,29 @@ class _BMICalculatorPageState extends State<BMICalculatorPage> {
           'RESULTS',
           style: TextStyle(fontSize: 20),
         ),
-        const Expanded(child: SizedBox()),
+        ReusableCard(
+          color: kActiveCardColor,
+          cardChild: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                'NORMAL',
+                style: kResultTextStyle,
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                '18.5',
+                style: kBMITextStyle,
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                'You should eat more!',
+                textAlign: TextAlign.center,
+              )
+            ],
+          ),
+        ),
         GestureDetector(
           onTap: (() {
             changeView(BMIView.input);

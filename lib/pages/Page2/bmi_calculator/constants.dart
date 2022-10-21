@@ -18,3 +18,14 @@ const TextStyle kNumberTextStyle = TextStyle(
   color: Color(0xFF8D8E98),
   fontWeight: FontWeight.w900,
 );
+
+const TextStyle kResultTextStyle = TextStyle(
+  fontSize: 30,
+  color: Color(0xFF24D876),
+  fontWeight: FontWeight.bold,
+);
+const TextStyle kBMITextStyle = TextStyle(
+  fontSize: 80,
+  color: Color(0xFF8D8E98),
+  fontWeight: FontWeight.bold,
+);
