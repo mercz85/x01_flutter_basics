@@ -2,11 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:x01_flutter_basics/pages/Page2/bmi_calculator/calculator_brain.dart';
-import 'package:x01_flutter_basics/pages/Page2/bmi_calculator/reusable_card.dart';
 
+import 'components/icon_content.dart';
+import 'components/reusable_card.dart';
+import 'components/round_icon_button.dart';
 import 'constants.dart';
-import 'icon_content.dart';
-import 'round_icon_button.dart';
 
 enum Gender { none, male, female }
 
@@ -47,19 +47,20 @@ class _BMICalculatorPageState extends State<BMICalculatorPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        //[Visibility]
-        Visibility(
-          visible: bmiView == BMIView.input ? true : false,
-          child: inputView(context),
-        ),
-        Visibility(
-          visible: bmiView == BMIView.result ? true : false,
-          child: resultView(context),
-        ),
-      ],
-    );
+    return bmiView == BMIView.input ? inputView(context) : resultView(context);
+    // return Stack(
+    //   children: [
+    //     //[Visibility]
+    //     Visibility(
+    //       visible: bmiView == BMIView.input ? true : false,
+    //       child: inputView(context),
+    //     ),
+    //     Visibility(
+    //       visible: bmiView == BMIView.result ? true : false,
+    //       child: resultView(context),
+    //     ),
+    //   ],
+    // );
   }
 
   //[extractMethod] to see different 'views' in the same Tab
