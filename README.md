@@ -24,7 +24,7 @@ splashScreen [flutter_native_splash](https://www.youtube.com/watch?v=8ME8Czqc-Oc
 3) To create the flutter_native_splash run in your vscode Terminal (inside your project folder):
 flutter pub run flutter_native_splash:create --path=flutter_native_splash.yaml
 
-bottomNavigationBar [bottomNavigationBar](https://www.youtube.com/watch?v=XasJNwAlCy4&list=PLutrh4gv1YI8ap4JO23lN81JOSZJ3i5OO&index=13)
+bottomNavigationBar [bottomNavigationBar] (https://www.youtube.com/watch?v=XasJNwAlCy4&list=PLutrh4gv1YI8ap4JO23lN81JOSZJ3i5OO&index=13)
 bottomNavigationBar > 3 BottomNavigationBarItems [bottomNavigationBar > 3 items](https://stackoverflow.com/questions/52199196/flutter-bottomnavigationbar-not-working-with-more-than-three-items)
 
 customTabs with PageView [customTabButton](https://www.youtube.com/watch?v=mhcgTYzZPv0)
@@ -68,3 +68,5 @@ compose a button from RawMaterialButton (instead of FAB)[buttonComposition]
  [Visibility] (https://stackoverflow.com/questions/44489804/how-to-show-hide-widgets-programmatically-in-flutter)
 
  Ignore file secrets.json to store APIs personal keys, etc [.gitignore]
+
+ [geolocation]

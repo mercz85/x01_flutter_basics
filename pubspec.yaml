@@ -46,6 +46,8 @@ dependencies:
   rflutter_alert: ^2.0.4
   # [icons]
   font_awesome_flutter: ^10.2.1
+  # [geolocation]
+  geolocator: ^9.0.2
 
 dev_dependencies:
   flutter_test:
