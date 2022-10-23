@@ -69,4 +69,5 @@ compose a button from RawMaterialButton (instead of FAB)[buttonComposition]
 
  Ignore file secrets.json to store APIs personal keys, etc [.gitignore]
 
- [geolocation]
+ [geolocation] 
+ to use when the app doesn´t ask for permissions properly [permissions]

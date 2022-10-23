@@ -48,6 +48,8 @@ dependencies:
   font_awesome_flutter: ^10.2.1
   # [geolocation]
   geolocator: ^9.0.2
+   # [geolocation] necessary to roll back to compileSdkVersion 31 since API Level 33 is Android 13 Beta
+  permission_handler: ^9.2.0
 
 dev_dependencies:
   flutter_test:
