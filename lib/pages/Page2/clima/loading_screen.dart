@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:http/http.dart' as http;
+
+import 'package:x01_flutter_basics/pages/Page2/clima/services/location.dart';
+import 'package:x01_flutter_basics/pages/Page2/clima/services/weather.dart';
+
+const apiKey = '';
 
 class LoadingScreen extends StatefulWidget {
   LoadingScreen({Key? key}) : super(key: key);
@@ -9,46 +15,23 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
-  void getLocation() async {
-    checkLocationPermission();
+  double latitude = 0;
+  double longitude = 0;
 
-    //[geolocation]
-    // https://stackoverflow.com/questions/72697570/warning-the-plugin-permission-handler-android-requires-android-sdk-version-33
+  void getLocationData() async {
+    // Location location = Location();
+    // await location.getCurrentLocation();
+    // latitude = location.latitude;
+    // longitude = location.longitude;
 
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.low);
-
-    print(position);
-  }
-
-  void checkLocationPermission() async {
-    //[permissions] To avoid the app not asking for LocationPermission
-    //https://stackoverflow.com/questions/70278783/exception-has-occurred-permissiondeniedexception-user-denied-permissions-to-ac
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      return Future.error('Location services are disabled');
-    }
-
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return Future.error('Location permissions are denied');
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.');
-    }
+    WeatherModel weatherModel = WeatherModel();
+    var data = await weatherModel.getLocationWeather();
   }
 
   @override
   void initState() {
-    getLocation();
+    getLocationData();
+
     super.initState();
   }
 
