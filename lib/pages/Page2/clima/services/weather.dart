@@ -5,6 +5,7 @@ import 'location.dart';
 import 'networking.dart';
 
 const openWeatherMapURL = 'https://api.openweathermap.org/data/2.5/weather';
+const weatherAPIKey = 'weather_API_key';
 
 //'https://api.openweathermap.org/data/2.5/weather?q=London&appid=xxxxxxxx';
 class WeatherModel {
@@ -15,7 +16,7 @@ class WeatherModel {
   }
 
   Future<void> setApikey() async {
-    _apiKey = (await SecretFile().getWeatherAPIKey())!;
+    _apiKey = (await SecretFile().getValueFromKey(weatherAPIKey))!;
   }
 
   checkAPIkey() async {
