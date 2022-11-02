@@ -75,3 +75,9 @@ compose a button from RawMaterialButton (instead of FAB)[buttonComposition]
  to read from JSON [jsonDecode]
  [http]
  how to read a JSON file and parse json list to Map [readJSONFile]
+
+ [spinner]
+
+ pass data between screens using Navigator [passDataNavigator]
+
+ check for strings [NullOrEmpty]

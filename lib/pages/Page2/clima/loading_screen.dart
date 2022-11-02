@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
+import 'package:x01_flutter_basics/pages/Page2/clima/location_screen.dart';
 
-import 'package:x01_flutter_basics/pages/Page2/clima/services/location.dart';
 import 'package:x01_flutter_basics/pages/Page2/clima/services/weather.dart';
 
 const apiKey = '';
@@ -26,6 +27,14 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
     WeatherModel weatherModel = WeatherModel();
     var data = await weatherModel.getLocationWeather();
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => LocationScreen(
+                weatherData: data,
+              )),
+    );
   }
 
   @override
@@ -38,7 +47,13 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.pink,
+      child: const Center(
+        //[spinner]
+        child: SpinKitDoubleBounce(
+          color: Colors.blue,
+          size: 100,
+        ),
+      ),
     );
   }
 }
