@@ -79,5 +79,6 @@ compose a button from RawMaterialButton (instead of FAB)[buttonComposition]
  [spinner]
 
  pass data between screens using Navigator [passDataNavigator]
+ pass data to statefull widget to it´s state [passDataConstructor]
 
  check for strings [NullOrEmpty]

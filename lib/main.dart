@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:x01_flutter_basics/pages/Page2/view.dart';
+import 'package:x01_flutter_basics/pages/Page3/view.dart';
 
 import 'pages/Page1/view.dart';
 
@@ -18,7 +19,7 @@ class _MyAppState extends State<MyApp> {
   final List<Widget> _pages = [
     Page1(),
     Page2(),
-    Container(color: Colors.amber),
+    Page3(),
   ];
 
   //onSurface: Colors.red,);

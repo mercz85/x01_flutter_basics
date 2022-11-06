@@ -1,12 +1,12 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:x01_flutter_basics/pages/Page2/clima/services/city_screen.dart';
+import 'package:x01_flutter_basics/pages/Page2/clima/city_screen.dart';
 import 'package:x01_flutter_basics/pages/Page2/clima/services/weather.dart';
 
 class LocationScreen extends StatefulWidget {
   LocationScreen({Key? key, this.weatherData}) : super(key: key);
-
+  //[passDataConstructor]
   final weatherData;
 
   @override
@@ -23,7 +23,7 @@ class _LocationScreenState extends State<LocationScreen> {
 
   @override
   void initState() {
-    //print(widget.weatherData);
+    //[passDataConstructor]
     updateUI(widget.weatherData);
     super.initState();
   }
