@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:x01_flutter_basics/pages/Page2/clima/services/secrets.dart';
+import 'package:x01_flutter_basics/secrets.dart';
 
 import 'location.dart';
 import 'networking.dart';

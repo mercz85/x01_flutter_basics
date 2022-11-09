@@ -82,3 +82,7 @@ compose a button from RawMaterialButton (instead of FAB)[buttonComposition]
  pass data to statefull widget to it´s state [passDataConstructor]
 
  check for strings [NullOrEmpty]
+
+ shift from Material to Cupertino depending on Platform [Cupertino] [Platform]
+ 
+ [HTTPHeaders]
