@@ -85,4 +85,6 @@ compose a button from RawMaterialButton (instead of FAB)[buttonComposition]
 
  shift from Material to Cupertino depending on Platform [Cupertino] [Platform]
  
- [HTTPHeaders]
+ add headers like for example api keys [HTTPHeaders]
+ get asyncronous information and update screen [async]
+ api comsumption [api]

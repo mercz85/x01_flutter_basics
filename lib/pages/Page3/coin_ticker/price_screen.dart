@@ -11,13 +11,74 @@ class PriceScreen extends StatefulWidget {
 }
 
 class _PriceScreenState extends State<PriceScreen> {
-  String selectedCurrency = currenciesList[0];
+  String selectedCurrency = currenciesList[4];
   String cryptoValue = '?';
-  //Map<String, String> cryptoValues;
   String cryptoCurrency = cryptoList[0];
-  List<CryptoCard> cards = [
-    CryptoCard(cryptoValue: '?', selectedCurrency: 'USD', cryptoCurrency: 'BTC')
-  ];
+  Map<String, String> cryptoValues = {};
+  List<CryptoCard> cards = [];
+
+  //[async]
+  void getCoinExchange(String selectedCurrency) async {
+    /* For 1 single exchange card
+
+    var cryptoVal = await CoinData().getCoinData(selectedCurrency);
+
+    setState(() {
+      cards = [
+        CryptoCard(
+            cryptoValue: cryptoVal.toStringAsFixed(0),
+            selectedCurrency: selectedCurrency,
+            cryptoCurrency: 'BTC'),
+      ];
+    });
+
+    */
+
+    cryptoValues = await CoinData().getCoinsData(selectedCurrency);
+
+    setState(() {
+      cards = [];
+      cryptoValues.forEach((key, val) {
+        cards.add(CryptoCard(
+            cryptoValue: val,
+            selectedCurrency: selectedCurrency,
+            cryptoCurrency: key));
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getCoinExchange(selectedCurrency);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Expanded(
+          flex: 4,
+          child: Column(
+            children: cards,
+          ),
+        ),
+        Expanded(
+          flex: 1,
+          child: Container(
+            width: double.infinity,
+            color: Colors.lightBlueAccent,
+            child: Center(
+              child: Platform.isIOS
+                  ? getIOSPicker()
+                  : getDropdownButton(), //[Platform]
+            ),
+          ),
+        )
+      ],
+    );
+  }
 
   DropdownButton<String> getDropdownButton() {
     List<DropdownMenuItem<String>> currencyList = [];
@@ -39,6 +100,7 @@ class _PriceScreenState extends State<PriceScreen> {
       onChanged: (value) {
         setState(() {
           selectedCurrency = value.toString();
+          getCoinExchange(selectedCurrency);
         });
       },
     );
@@ -57,38 +119,10 @@ class _PriceScreenState extends State<PriceScreen> {
         onSelectedItemChanged: (selectedIndex) {
           setState(() {
             selectedCurrency = currencyList[selectedIndex].data.toString();
+            getCoinExchange(selectedCurrency);
           });
         },
         children: currencyList);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Expanded(
-            flex: 4,
-            child: Column(
-              children: cards,
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Container(
-              width: double.infinity,
-              color: Colors.lightBlueAccent,
-              child: Center(
-                child: Platform.isIOS
-                    ? getIOSPicker()
-                    : getDropdownButton(), //[Platform]
-              ),
-            ),
-          )
-        ],
-      ),
-    );
   }
 }
 

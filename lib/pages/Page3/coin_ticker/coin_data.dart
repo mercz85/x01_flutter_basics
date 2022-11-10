@@ -93,6 +93,7 @@ class CoinData {
 
     try {
       for (String cryptoCoin in cryptoList) {
+        //[api]
         url = Uri.parse('$coinAPIURL$cryptoCoin/$selectedCurrency');
         var response = await client.get(url, headers: headers);
         //var response = await client.get(url);
@@ -127,6 +128,7 @@ class CoinData {
 
     DateTime now = DateTime.now();
     String isoDate = now.toIso8601String();
+    //[api]
     var url = Uri.parse(
         '$coinAPIURL${cryptoList[0]}/$selectedCurrency'); // '?time=$isoDate' +
     var result;
