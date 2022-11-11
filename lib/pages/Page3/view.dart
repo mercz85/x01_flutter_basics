@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:x01_flutter_basics/pages/Page3/coin_ticker/price_screen.dart';
+import 'package:x01_flutter_basics/pages/Page3/flash_chat/screens/wellcome_screen.dart';
 import 'package:x01_flutter_basics/widgets/TabButton.dart';
 
 class Page3 extends StatefulWidget {
@@ -54,6 +55,14 @@ class _Page3State extends State<Page3> {
                   _changeTab(0);
                 },
               ),
+              TabButton(
+                text: "Flash Chat",
+                pageNumber: 1,
+                selectedPage: _selectedTab,
+                onPressed: () {
+                  _changeTab(1);
+                },
+              ),
             ],
           ),
         ),
@@ -70,6 +79,10 @@ class _Page3State extends State<Page3> {
               Container(
                 color: Colors.white,
                 child: PriceScreen(),
+              ),
+              Container(
+                color: Colors.white,
+                child: WellcomeScreen(),
               ),
             ],
           ),
