@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:x01_flutter_basics/pages/Page3/coin_ticker/price_screen.dart';
+import 'package:x01_flutter_basics/pages/Page3/flash_chat/screens/chat_screen.dart';
+import 'package:x01_flutter_basics/pages/Page3/flash_chat/screens/login_screen.dart';
+import 'package:x01_flutter_basics/pages/Page3/flash_chat/screens/registration_screen.dart';
 import 'package:x01_flutter_basics/pages/Page3/flash_chat/screens/wellcome_screen.dart';
 import 'package:x01_flutter_basics/widgets/TabButton.dart';
 
@@ -80,9 +83,19 @@ class _Page3State extends State<Page3> {
                 color: Colors.white,
                 child: PriceScreen(),
               ),
-              Container(
+              //[namedRoutes] use a MateriaApp
+              MaterialApp(
+                theme: Theme.of(context),
+                debugShowCheckedModeBanner: false,
                 color: Colors.white,
-                child: WellcomeScreen(),
+                //[namedRoutes] set your initialRoute and your routes map
+                initialRoute: WellcomeScreen.id,
+                routes: {
+                  WellcomeScreen.id: (context) => WellcomeScreen(),
+                  RegistrationScreen.id: (context) => RegistrationScreen(),
+                  LoginScreen.id: (context) => LoginScreen(),
+                  ChatScreen.id: (context) => ChatScreen(),
+                },
               ),
             ],
           ),

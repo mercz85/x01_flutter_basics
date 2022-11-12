@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../components/rounded_button.dart';
+import 'login_screen.dart';
+import 'registration_screen.dart';
 
 class WellcomeScreen extends StatefulWidget {
   WellcomeScreen({Key? key}) : super(key: key);
@@ -46,7 +48,8 @@ class _WellcomeScreenState extends State<WellcomeScreen> {
               text: 'Login',
               onPressed: () {
                 //Go to login screen.
-                //Navigator.pushNamed(context, LoginScreen.id);
+                //[namedRoutes]
+                Navigator.pushNamed(context, LoginScreen.id);
               },
             ),
             RoundedButton(
@@ -54,7 +57,8 @@ class _WellcomeScreenState extends State<WellcomeScreen> {
               text: 'Register',
               onPressed: () {
                 //Go to registration screen.
-                //Navigator.pushNamed(context, RegistrationScreen.id);
+                //[namedRoutes]
+                Navigator.pushNamed(context, RegistrationScreen.id);
               },
             ),
           ],

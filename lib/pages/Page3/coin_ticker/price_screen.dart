@@ -15,7 +15,12 @@ class _PriceScreenState extends State<PriceScreen> {
   String cryptoValue = '?';
   String cryptoCurrency = cryptoList[0];
   Map<String, String> cryptoValues = {};
-  List<CryptoCard> cards = [];
+  List<CryptoCard> cards = [
+    CryptoCard(
+        cryptoValue: '?',
+        selectedCurrency: currenciesList[4],
+        cryptoCurrency: 'BTC')
+  ];
 
   //[async]
   void getCoinExchange(String selectedCurrency) async {
