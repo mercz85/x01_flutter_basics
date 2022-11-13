@@ -1,4 +1,6 @@
+import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
+import 'package:x01_flutter_basics/pages/Page3/flash_chat/constants.dart';
 
 import '../components/rounded_button.dart';
 import 'login_screen.dart';
@@ -18,20 +20,23 @@ class _WellcomeScreenState extends State<WellcomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Row(
               children: [
-                Container(
-                  child: Image.asset('assets/flash_chat/logo.png'),
-                  height: 60.0,
-                  //height: controller.value,
-                  //height: animation.value * 100,
+                //[HeroAnimation]
+                Hero(
+                  tag: kLogoTag,
+                  key: const Key('logo_wellcome'),
+                  child: Container(
+                    child: Image.asset('assets/flash_chat/logo.png'),
+                    height: 60.0,
+                  ),
                 ),
-                Text(
+                const Text(
                   'Flash Chat',
                   style: TextStyle(
                     fontSize: 45.0,

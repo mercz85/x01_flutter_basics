@@ -91,3 +91,4 @@ compose a button from RawMaterialButton (instead of FAB)[buttonComposition]
 
  using namedRoutes to navigate between screens [namedRoutes]
  when using TEXTFIELDS, the KEYBOARD pops up and you get BOTTOM OVERFLOWED by PIXELS error [Error01] [Keyboard]
+you need: 2 Hero Widgets, 1 shared tag, 1 Navigator based screen transition[HeroAnimation]

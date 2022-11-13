@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:x01_flutter_basics/pages/Page3/flash_chat/constants.dart';
 import 'package:x01_flutter_basics/pages/Page3/flash_chat/screens/chat_screen.dart';
 
 /*
@@ -44,9 +45,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                 ],
               ),
-              Container(
-                height: 200.0,
-                child: Image.asset('assets/flash_chat/logo.png'),
+              //[HeroAnimation]
+              Hero(
+                tag: kLogoTag,
+                key: Key('logo_registration'),
+                child: Container(
+                  height: 200.0,
+                  child: Image.asset('assets/flash_chat/logo.png'),
+                ),
               ),
               const SizedBox(
                 height: 48.0,
