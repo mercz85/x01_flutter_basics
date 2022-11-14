@@ -1,4 +1,3 @@
-import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:x01_flutter_basics/pages/Page3/flash_chat/constants.dart';
 
@@ -15,7 +14,70 @@ class WellcomeScreen extends StatefulWidget {
   State<WellcomeScreen> createState() => _WellcomeScreenState();
 }
 
-class _WellcomeScreenState extends State<WellcomeScreen> {
+//[CustomAnimation] SingleTickerProviderStateMixin (1 AnimationController) vs TickerProviderStateMixin (> 1 AnimationController)
+class _WellcomeScreenState extends State<WellcomeScreen>
+    with TickerProviderStateMixin {
+  late AnimationController animationControllerIconSize;
+  //Animation: Not necessary if you want to use just the controller value
+  late Animation animationIconSize;
+
+  late AnimationController animationControllerTitleColor;
+  late Animation animationTitleColor;
+
+  @override
+  void initState() {
+    //[CustomAnimation] AnimationController animationControllerIconSize
+    animationControllerIconSize = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+      upperBound: 60, //change value range: 0 to 60 (default 0 to 1)
+    )
+      ..forward()
+      ..addListener(() {
+        //Listen to value changes to modify state
+        setState(() {});
+      });
+
+    //[CurvedAnimation] If you don´t want value progression to be linear
+    animationIconSize = CurvedAnimation(
+      parent: animationControllerIconSize,
+      curve: Curves.decelerate,
+    );
+
+    //[CustomAnimation] AnimationController animationControllerTitleColor
+    animationControllerTitleColor = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    )
+      ..forward()
+      ..addListener(() {
+        //Listen to value changes to modify state
+        setState(() {});
+      })
+      ..addStatusListener((status) {
+        //[CustomAnimation] animation loop
+        if (status == AnimationStatus.completed) {
+          animationControllerTitleColor.reverse();
+        } else if (status == AnimationStatus.dismissed) {
+          animationControllerTitleColor.forward();
+        }
+      });
+    //[ColorTween]
+    animationTitleColor =
+        ColorTween(begin: Colors.yellow.shade800, end: Colors.white)
+            .animate(animationControllerTitleColor);
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    //[CustomAnimation] dispose
+    animationControllerIconSize.dispose();
+    animationControllerTitleColor.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,14 +95,17 @@ class _WellcomeScreenState extends State<WellcomeScreen> {
                   key: const Key('logo_wellcome'),
                   child: Container(
                     child: Image.asset('assets/flash_chat/logo.png'),
-                    height: 60.0,
+                    //[CustomAnimation] controller.value use
+                    height: animationControllerIconSize.value,
                   ),
                 ),
-                const Text(
+                Text(
                   'Flash Chat',
                   style: TextStyle(
                     fontSize: 45.0,
                     fontWeight: FontWeight.w900,
+                    //[ColorTween] animation.value use
+                    color: animationTitleColor.value,
                   ),
                 )
               ],
