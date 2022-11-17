@@ -93,3 +93,8 @@ compose a button from RawMaterialButton (instead of FAB)[buttonComposition]
  when using TEXTFIELDS, the KEYBOARD pops up and you get BOTTOM OVERFLOWED by PIXELS error [Error01] [Keyboard]
 you need: 2 Hero Widgets, 1 shared tag, 1 Navigator based screen transition[HeroAnimation]
 you need: 1 Ticker, 1 AnimationController, 1 Animation value [CustomAnimation] [CurvedAnimation] [ColorTween]
+To add/share capabilities to our classes [mixin]
+[textAnimation]
+use copyWith with constants [kConst.copywith]
+
+FIREBASE (https://www.youtube.com/watch?v=U45mIlvbi6s)

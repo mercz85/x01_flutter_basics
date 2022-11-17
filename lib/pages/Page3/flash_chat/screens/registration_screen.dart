@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:x01_flutter_basics/pages/Page3/flash_chat/constants.dart';
 import 'package:x01_flutter_basics/pages/Page3/flash_chat/screens/chat_screen.dart';
+import 'package:x01_flutter_basics/pages/Page3/flash_chat/constants.dart';
 
 /*
 [Keyboard] [Error01]: when using textfields, the keyboard pops up and you get pixels overflow error
@@ -61,24 +62,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 onChanged: (value) {
                   //Do something with the user input.
                 },
-                decoration: const InputDecoration(
-                  hintText: 'Enter your email',
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.blueAccent, width: 1.0),
-                    borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.blueAccent, width: 2.0),
-                    borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                  ),
-                ),
+                decoration:
+                    kTextFieldDecoration.copyWith(hintText: 'Enter your email'),
               ),
               const SizedBox(
                 height: 8.0,
@@ -87,24 +72,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 onChanged: (value) {
                   //Do something with the user input.
                 },
-                decoration: const InputDecoration(
-                  hintText: 'Enter your password',
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.blueAccent, width: 1.0),
-                    borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.blueAccent, width: 2.0),
-                    borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                  ),
-                ),
+                decoration: kTextFieldDecoration.copyWith(
+                    hintText: 'Enter your password'),
               ),
               const SizedBox(
                 height: 24.0,

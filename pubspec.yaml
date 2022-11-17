@@ -52,6 +52,8 @@ dependencies:
   permission_handler: ^9.2.0
   # [spinner]
   flutter_spinkit: ^5.1.0
+   # [textAnimation]
+  animated_text_kit: ^4.2.2
 
 dev_dependencies:
   flutter_test:

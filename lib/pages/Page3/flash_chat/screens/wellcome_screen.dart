@@ -4,6 +4,7 @@ import 'package:x01_flutter_basics/pages/Page3/flash_chat/constants.dart';
 import '../components/rounded_button.dart';
 import 'login_screen.dart';
 import 'registration_screen.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class WellcomeScreen extends StatefulWidget {
   WellcomeScreen({Key? key}) : super(key: key);
@@ -14,6 +15,7 @@ class WellcomeScreen extends StatefulWidget {
   State<WellcomeScreen> createState() => _WellcomeScreenState();
 }
 
+//[mixin] TickerProviderStateMixin gives a TickerProvider to our class
 //[CustomAnimation] SingleTickerProviderStateMixin (1 AnimationController) vs TickerProviderStateMixin (> 1 AnimationController)
 class _WellcomeScreenState extends State<WellcomeScreen>
     with TickerProviderStateMixin {
@@ -99,13 +101,21 @@ class _WellcomeScreenState extends State<WellcomeScreen>
                     height: animationControllerIconSize.value,
                   ),
                 ),
-                Text(
-                  'Flash Chat',
+                //[textAnimation]
+                DefaultTextStyle(
                   style: TextStyle(
                     fontSize: 45.0,
                     fontWeight: FontWeight.w900,
                     //[ColorTween] animation.value use
                     color: animationTitleColor.value,
+                  ),
+                  //[textAnimation]
+                  child: AnimatedTextKit(
+                    animatedTexts: [
+                      TypewriterAnimatedText('Flash Chat',
+                          speed: Duration(milliseconds: 200))
+                    ],
+                    totalRepeatCount: 1,
                   ),
                 )
               ],
