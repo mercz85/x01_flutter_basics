@@ -97,4 +97,6 @@ To add/share capabilities to our classes [mixin]
 [textAnimation]
 use copyWith with constants [kConst.copywith]
 
-FIREBASE (https://www.youtube.com/watch?v=U45mIlvbi6s)
+FIREBASE + FLUTTER 3 [firebase](https://www.youtube.com/watch?v=U45mIlvbi6s)
+
+

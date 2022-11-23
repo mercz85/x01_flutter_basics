@@ -3,9 +3,20 @@ import 'package:x01_flutter_basics/pages/Page2/view.dart';
 import 'package:x01_flutter_basics/pages/Page3/view.dart';
 
 import 'pages/Page1/view.dart';
+//[firebase]
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 //[snippets] mateapp --> creates a new almost empty MaterialApp
-void main() => runApp(MyApp());
+//void main() => runApp(MyApp());
+Future<void> main() async {
+  //[firebase]
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp());
+}
 
 class MyApp extends StatefulWidget {
   @override
