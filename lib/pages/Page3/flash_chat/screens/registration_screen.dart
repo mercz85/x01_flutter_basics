@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:x01_flutter_basics/pages/Page3/flash_chat/constants.dart';
 import 'package:x01_flutter_basics/pages/Page3/flash_chat/screens/chat_screen.dart';
 import 'package:x01_flutter_basics/pages/Page3/flash_chat/constants.dart';
@@ -19,6 +22,12 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  //[auth]
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  String email = '';
+  String password = '';
+  bool passwordObscureText = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,8 +68,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 height: 48.0,
               ),
               TextField(
+                cursorColor: Colors.white,
+                textAlign: TextAlign.center,
+                keyboardType: TextInputType.emailAddress,
                 onChanged: (value) {
-                  //Do something with the user input.
+                  email = value;
                 },
                 decoration:
                     kTextFieldDecoration.copyWith(hintText: 'Enter your email'),
@@ -69,11 +81,28 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 height: 8.0,
               ),
               TextField(
+                cursorColor: Colors.white,
+                textAlign: TextAlign.center,
+                obscureText: passwordObscureText,
+                //keyboardType: TextInputType.visiblePassword,
                 onChanged: (value) {
-                  //Do something with the user input.
+                  password = value;
                 },
                 decoration: kTextFieldDecoration.copyWith(
-                    hintText: 'Enter your password'),
+                  hintText: 'Enter your password',
+                  suffixIcon: GestureDetector(
+                    child: Icon(Icons.visibility,
+                        color: passwordObscureText == true
+                            ? Colors.white
+                            : Colors.grey),
+                    onTap: () {
+                      setState(() {
+                        passwordObscureText =
+                            passwordObscureText == true ? false : true;
+                      });
+                    },
+                  ),
+                ),
               ),
               const SizedBox(
                 height: 24.0,
@@ -85,8 +114,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   borderRadius: const BorderRadius.all(Radius.circular(30.0)),
                   elevation: 5.0,
                   child: MaterialButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, ChatScreen.id);
+                    onPressed: () async {
+                      try {
+                        //[auth]
+                        UserCredential newUser =
+                            await _auth.createUserWithEmailAndPassword(
+                                email: email, password: password);
+                        if (newUser.user != null) {
+                          Navigator.pushNamed(context, ChatScreen.id);
+                        }
+                      } catch (e) {
+                        print(e);
+                      }
                     },
                     minWidth: 200.0,
                     height: 42.0,

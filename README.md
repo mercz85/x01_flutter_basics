@@ -98,5 +98,6 @@ To add/share capabilities to our classes [mixin]
 use copyWith with constants [kConst.copywith]
 
 FIREBASE + FLUTTER 3 [firebase](https://www.youtube.com/watch?v=U45mIlvbi6s)
+[auth]
 
 
