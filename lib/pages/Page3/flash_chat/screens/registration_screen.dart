@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:x01_flutter_basics/pages/Page3/flash_chat/constants.dart';
 import 'package:x01_flutter_basics/pages/Page3/flash_chat/screens/chat_screen.dart';
 import 'package:x01_flutter_basics/pages/Page3/flash_chat/constants.dart';
@@ -27,6 +29,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   String email = '';
   String password = '';
   bool passwordObscureText = true;
+  //[GoogleSignIn]
+  final googleSignIn = GoogleSignIn();
+
+  Future<OAuthCredential> googleLogin() async {
+    //Shows pop-up to select Google account
+    final googleUser = await googleSignIn.signIn();
+    //Authenticates the user
+    final googleAuth = await googleUser!.authentication;
+    OAuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+    return credential;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +74,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               //[HeroAnimation]
               Hero(
                 tag: kLogoTag,
-                key: Key('logo_registration'),
+                key: const Key('logo_registration'),
                 child: Container(
                   height: 200.0,
                   child: Image.asset('assets/flash_chat/logo.png'),
@@ -129,9 +145,62 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     },
                     minWidth: 200.0,
                     height: 42.0,
-                    child: const Text(
-                      'Register',
-                      style: TextStyle(color: Colors.white),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(
+                          Icons.email,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'Register with Email',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: Material(
+                  color: Colors.red,
+                  borderRadius: const BorderRadius.all(Radius.circular(30.0)),
+                  elevation: 5.0,
+                  //[GoogleSignIn]
+                  child: MaterialButton(
+                    onPressed: () async {
+                      try {
+                        OAuthCredential credential = await googleLogin();
+                        UserCredential newUser =
+                            await _auth.signInWithCredential(credential);
+                        if (newUser.user != null) {
+                          Navigator.pushNamed(context, ChatScreen.id);
+                        }
+                      } catch (e) {
+                        print(e);
+                      }
+                    },
+                    minWidth: 200.0,
+                    height: 42.0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        FaIcon(
+                          FontAwesomeIcons.google,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'Register with Google',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
                     ),
                   ),
                 ),
