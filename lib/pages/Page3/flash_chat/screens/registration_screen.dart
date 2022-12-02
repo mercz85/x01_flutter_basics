@@ -132,7 +132,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   child: MaterialButton(
                     onPressed: () async {
                       try {
-                        //[auth]
+                        //[auth] password hast to be at least 6 characters long
                         UserCredential newUser =
                             await _auth.createUserWithEmailAndPassword(
                                 email: email, password: password);

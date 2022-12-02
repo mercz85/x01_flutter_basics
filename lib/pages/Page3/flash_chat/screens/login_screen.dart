@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:x01_flutter_basics/pages/Page3/flash_chat/constants.dart';
 
 import 'chat_screen.dart';
@@ -12,6 +15,26 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   late AnimationController animationController;
+
+  //[auth]
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  String email = '';
+  String password = '';
+
+  //[GoogleSignIn]
+  final googleSignIn = GoogleSignIn();
+
+  Future<OAuthCredential> googleLogin() async {
+    //Shows pop-up to select Google account
+    final googleUser = await googleSignIn.signIn();
+    //Authenticates the user
+    final googleAuth = await googleUser!.authentication;
+    OAuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+    return credential;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +74,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 48.0,
               ),
               TextField(
+                  cursorColor: Colors.white,
+                  textAlign: TextAlign.center,
                   onChanged: (value) {
-                    //Do something with the user input.
+                    email = value;
                   },
                   //[kConst.copywith]
                   decoration: kTextFieldDecoration.copyWith(
@@ -62,10 +87,13 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               TextField(
                 onChanged: (value) {
-                  //Do something with the user input.
+                  password = value;
                 },
                 decoration: kTextFieldDecoration.copyWith(
                     hintText: 'Enter your password.'),
+                obscureText: true,
+                cursorColor: Colors.white,
+                textAlign: TextAlign.center,
               ),
               const SizedBox(
                 height: 24.0,
@@ -77,14 +105,64 @@ class _LoginScreenState extends State<LoginScreen> {
                   borderRadius: const BorderRadius.all(Radius.circular(30.0)),
                   elevation: 5.0,
                   child: MaterialButton(
-                    onPressed: () {
-                      //Implement login functionality.
-                      Navigator.pushNamed(context, ChatScreen.id);
+                    onPressed: () async {
+                      try {
+                        //[auth]
+                        UserCredential newUser =
+                            await _auth.signInWithEmailAndPassword(
+                                email: email, password: password);
+                        if (newUser.user != null) {
+                          Navigator.pushNamed(context, ChatScreen.id);
+                        }
+                      } catch (e) {
+                        print(e);
+                      }
                     },
                     minWidth: 200.0,
                     height: 42.0,
                     child: const Text(
                       'Log In',
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: Material(
+                  color: Colors.red,
+                  borderRadius: const BorderRadius.all(Radius.circular(30.0)),
+                  elevation: 5.0,
+                  //[GoogleSignIn]
+                  child: MaterialButton(
+                    onPressed: () async {
+                      try {
+                        OAuthCredential credential = await googleLogin();
+                        UserCredential newUser =
+                            await _auth.signInWithCredential(credential);
+                        if (newUser.user != null) {
+                          Navigator.pushNamed(context, ChatScreen.id);
+                        }
+                      } catch (e) {
+                        print(e);
+                      }
+                    },
+                    minWidth: 200.0,
+                    height: 42.0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        FaIcon(
+                          FontAwesomeIcons.google,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'Login with Google',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
                     ),
                   ),
                 ),

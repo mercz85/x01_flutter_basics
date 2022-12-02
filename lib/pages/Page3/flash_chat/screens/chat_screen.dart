@@ -16,26 +16,20 @@ class _ChatScreenState extends State<ChatScreen> {
   //[auth]
   final FirebaseAuth _auth = FirebaseAuth.instance;
   late User loggedInUser;
-  @override
-  void initState() {
-    print('initstate');
-    //[auth]
-    loggedInUser = _auth.currentUser!;
-    print(loggedInUser.uid);
-    //getCurrentUser();
-    super.initState();
-  }
 
-  getCurrentUser() {
+  void getCurrentUser() {
     try {
-      final user = _auth.currentUser!;
-      if (user != null) {
-        loggedInUser = user;
-        print(user.email);
-      }
+      loggedInUser = _auth.currentUser!;
+      print(loggedInUser.email);
     } catch (e) {
       print(e);
     }
+  }
+
+  @override
+  void initState() {
+    getCurrentUser();
+    super.initState();
   }
 
   @override
@@ -74,7 +68,9 @@ class _ChatScreenState extends State<ChatScreen> {
                     size: kTopBarHeight,
                   ),
                   onPressed: () {
-                    //Implement logout functionality
+                    //[auth] signOut
+                    _auth.signOut();
+                    Navigator.pop(context);
                   }),
             ],
           ),
