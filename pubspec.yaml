@@ -60,6 +60,8 @@ dependencies:
   cloud_firestore: ^4.1.0
   #[GoogleSignIn]
   google_sign_in: ^5.4.2
+  #[spinner_inAsyncCall]
+  modal_progress_hud_nsn: ^0.3.0
 
 dev_dependencies:
   flutter_test:
