@@ -101,6 +101,5 @@ FIREBASE + FLUTTER 3 [firebase](https://www.youtube.com/watch?v=U45mIlvbi6s)
 [auth]
 You have to add first your SHA-1 and SHA-256 in your Firebase project settings for Android [GoogleSignIn] (https://youtu.be/1k-gITZA9CI)
 show spinner while async call [spinner_inAsyncCall]
-[firestore]
-
+[firestore] [ListView] [keyboardHide]
 
