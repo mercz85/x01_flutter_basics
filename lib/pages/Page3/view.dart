@@ -4,6 +4,7 @@ import 'package:x01_flutter_basics/pages/Page3/flash_chat/screens/chat_screen.da
 import 'package:x01_flutter_basics/pages/Page3/flash_chat/screens/login_screen.dart';
 import 'package:x01_flutter_basics/pages/Page3/flash_chat/screens/registration_screen.dart';
 import 'package:x01_flutter_basics/pages/Page3/flash_chat/screens/wellcome_screen.dart';
+import 'package:x01_flutter_basics/pages/Page3/to_do/blankScreen.dart';
 import 'package:x01_flutter_basics/widgets/TabButton.dart';
 
 class Page3 extends StatefulWidget {
@@ -66,6 +67,14 @@ class _Page3State extends State<Page3> {
                   _changeTab(1);
                 },
               ),
+              TabButton(
+                text: "TO DO",
+                pageNumber: 2,
+                selectedPage: _selectedTab,
+                onPressed: () {
+                  _changeTab(2);
+                },
+              ),
             ],
           ),
         ),
@@ -96,6 +105,9 @@ class _Page3State extends State<Page3> {
                   LoginScreen.id: (context) => LoginScreen(),
                   ChatScreen.id: (context) => ChatScreen(),
                 },
+              ),
+              Container(
+                child: BlankScreen(),
               ),
             ],
           ),

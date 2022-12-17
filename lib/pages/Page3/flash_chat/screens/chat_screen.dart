@@ -71,89 +71,86 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //[keyboardHide] GestureDetector + FocusScope
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
+    //[keyboardHide] GestureDetector + FocusScope -> onTap: () => FocusScope.of(context).unfocus(),
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                icon: const Icon(
+                  Icons.arrow_back_rounded,
+                  size: kTopBarHeight,
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              Container(
+                alignment: Alignment.bottomCenter,
+                height: kTopBarHeight,
+                child: const Text(
+                  '⚡️Chat',
+                  style: TextStyle(
+                      fontSize: kTopBarHeight * 0.75,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              IconButton(
                   icon: const Icon(
-                    Icons.arrow_back_rounded,
+                    Icons.close,
                     size: kTopBarHeight,
                   ),
                   onPressed: () {
+                    //[auth] signOut
+                    _auth.signOut();
                     Navigator.pop(context);
-                  },
-                ),
-                Container(
-                  alignment: Alignment.bottomCenter,
-                  height: kTopBarHeight,
-                  child: const Text(
-                    '⚡️Chat',
-                    style: TextStyle(
-                        fontSize: kTopBarHeight * 0.75,
-                        fontWeight: FontWeight.bold),
+                  }),
+            ],
+          ),
+          MessagesStream(),
+          Container(
+            decoration: kMessageContainerDecoration,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: TextField(
+                    controller: messageTextController,
+                    cursorColor: Colors.white,
+                    onChanged: (value) {
+                      messageText = value;
+                    },
+                    decoration: kMessageTextFieldDecoration,
                   ),
                 ),
-                IconButton(
-                    icon: const Icon(
-                      Icons.close,
-                      size: kTopBarHeight,
-                    ),
-                    onPressed: () {
-                      //[auth] signOut
-                      _auth.signOut();
-                      Navigator.pop(context);
-                    }),
+                TextButton(
+                  onPressed: () async {
+                    messageTextController.clear();
+                    try {
+                      //[firestore] ADD + timestamp to order (¿or customize firebase document id?)
+                      _firestore.collection('messages').add({
+                        'timestamp': FieldValue.serverTimestamp(),
+                        'text': messageText,
+                        'sender': loggedInUser?.email,
+                      }).then((value) => print('sent ok'));
+                    } catch (e) {
+                      print(e);
+                    }
+                  },
+                  child: const Text(
+                    'Send',
+                    style: kSendButtonTextStyle,
+                  ),
+                ),
               ],
             ),
-            MessagesStream(),
-            Container(
-              decoration: kMessageContainerDecoration,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    child: TextField(
-                      controller: messageTextController,
-                      cursorColor: Colors.white,
-                      onChanged: (value) {
-                        messageText = value;
-                      },
-                      decoration: kMessageTextFieldDecoration,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () async {
-                      messageTextController.clear();
-                      try {
-                        //[firestore] ADD + timestamp to order (¿or customize firebase document id?)
-                        _firestore.collection('messages').add({
-                          'timestamp': FieldValue.serverTimestamp(),
-                          'text': messageText,
-                          'sender': loggedInUser?.email,
-                        }).then((value) => print('sent ok'));
-                      } catch (e) {
-                        print(e);
-                      }
-                    },
-                    child: const Text(
-                      'Send',
-                      style: kSendButtonTextStyle,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -207,6 +204,8 @@ class MessagesStream extends StatelessWidget {
             //[ListView] to make it scrollable and stick to bottom
             reverse: true, //Stick list to bottom
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+            //[keyboardHide] ListView + keyboardDismissBehavior
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             children: messageBubbles,
           ),
         );

@@ -6,6 +6,7 @@ import 'pages/Page1/view.dart';
 //[firebase]
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'pages/Page4/view.dart';
 
 //[snippets] mateapp --> creates a new almost empty MaterialApp
 //void main() => runApp(MyApp());
@@ -31,6 +32,7 @@ class _MyAppState extends State<MyApp> {
     Page1(),
     Page2(),
     Page3(),
+    Page4(),
   ];
 
   //onSurface: Colors.red,);
@@ -96,7 +98,11 @@ class _MyAppState extends State<MyApp> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.spa),
-              label: 'Page3',
+              label: 'Page3 State',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.sports_baseball),
+              label: 'Page4 BLoC',
             ),
           ],
         ),
