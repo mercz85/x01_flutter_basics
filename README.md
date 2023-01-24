@@ -103,3 +103,6 @@ You have to add first your SHA-1 and SHA-256 in your Firebase project settings f
 show spinner while async call [spinner_inAsyncCall]
 [firestore] [ListView] [keyboardHide]
 
+change CheckBox border color [CheckBox] [ListTile] [FloatingActionButton] 
+
+[BottomSheet] [BottomSheet size]

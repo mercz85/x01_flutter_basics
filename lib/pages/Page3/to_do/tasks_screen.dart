@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:x01_flutter_basics/pages/Page3/to_do/add_task_screen.dart';
 
 import 'components/task_list.dart';
 
@@ -73,7 +74,25 @@ class TasksScreen extends StatelessWidget {
         backgroundColor: Colors.lightBlueAccent,
         foregroundColor: Colors.white,
         child: const Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          //[BottomSheet]
+          showModalBottomSheet(
+            //[BottomSheet size] isScrollControlled + SingleChildScrollView + MediaQuery
+            isScrollControlled: true,
+            context: context,
+            builder: (context) => SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                child: AddTaskScreen(),
+              ),
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            backgroundColor: Colors.transparent,
+          );
+        },
       ),
     );
   }
