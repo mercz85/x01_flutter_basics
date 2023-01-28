@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:x01_flutter_basics/pages/Page3/to_do/add_task_screen.dart';
 
 import 'components/task_list.dart';
+import 'components/task_tile_callback_example.dart';
 
 class TasksScreen extends StatelessWidget {
   TasksScreen({Key? key}) : super(key: key);
@@ -61,17 +62,16 @@ class TasksScreen extends StatelessWidget {
                 decoration: const BoxDecoration(
                     color: Colors.white,
                     shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20))),
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
                 child: TasksList(),
               ),
             ),
+            const TaskTileCallbackExample(),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.lightBlueAccent,
+        backgroundColor: Colors.lightBlueAccent.shade700,
         foregroundColor: Colors.white,
         child: const Icon(Icons.add),
         onPressed: () {
