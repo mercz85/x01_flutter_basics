@@ -3,11 +3,23 @@ import 'package:x01_flutter_basics/pages/Page3/to_do/add_task_screen.dart';
 
 import 'components/task_list.dart';
 import 'components/task_tile_callback_example.dart';
+import 'models/task.dart';
 
-class TasksScreen extends StatelessWidget {
+class TasksScreen extends StatefulWidget {
   TasksScreen({Key? key}) : super(key: key);
 
   static const String id = '';
+
+  @override
+  State<TasksScreen> createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  List<Task> tasks = [
+    Task(name: 'Buy milk'),
+    Task(name: 'buy eggs'),
+    Task(name: 'buy cat food')
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -25,18 +37,18 @@ class TasksScreen extends StatelessWidget {
               padding: const EdgeInsets.only(left: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  CircleAvatar(
+                children: [
+                  const CircleAvatar(
                     backgroundColor: Colors.white,
                     child: Icon(
                       Icons.list,
                       color: Colors.lightBlueAccent,
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     height: 10,
                   ),
-                  Text(
+                  const Text(
                     'Todoey',
                     style: TextStyle(
                         color: Colors.white,
@@ -44,13 +56,13 @@ class TasksScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    '12 Tasks',
-                    style: TextStyle(
+                    '${tasks.length} Tasks',
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 16,
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     height: 10,
                   )
                 ],
@@ -63,7 +75,7 @@ class TasksScreen extends StatelessWidget {
                     color: Colors.white,
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.all(Radius.circular(20))),
-                child: TasksList(),
+                child: TasksList(tasks),
               ),
             ),
             const TaskTileCallbackExample(),
@@ -84,7 +96,12 @@ class TasksScreen extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom),
-                child: AddTaskScreen(),
+                //[CallBack Function]
+                child: AddTaskScreen((newTaskTitle) {
+                  setState(() {
+                    tasks.add(Task(name: newTaskTitle));
+                  });
+                }),
               ),
             ),
             shape: RoundedRectangleBorder(
