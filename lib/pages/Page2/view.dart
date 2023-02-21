@@ -3,7 +3,7 @@ import 'package:x01_flutter_basics/pages/Page2/bmi_calculator/bmi_calculator.dar
 import 'package:x01_flutter_basics/pages/Page2/clima/loading_screen.dart';
 import 'package:x01_flutter_basics/pages/Page2/quiz/quiz.dart';
 
-import '../../widgets/TabButton.dart';
+import '../../widgets/tabButton.dart';
 
 class Page2 extends StatefulWidget {
   Page2({Key? key}) : super(key: key);

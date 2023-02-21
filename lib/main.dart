@@ -102,7 +102,7 @@ class _MyAppState extends State<MyApp> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.sports_baseball),
-              label: 'Page4',
+              label: 'Page4 Provider',
             ),
           ],
         ),

@@ -3,7 +3,7 @@ import 'package:x01_flutter_basics/pages/Page1/dices/dices.dart';
 import 'package:x01_flutter_basics/pages/Page1/my_card/my_card.dart';
 import 'package:x01_flutter_basics/pages/Page1/xylophone/xylophone.dart';
 
-import '../../widgets/TabButton.dart';
+import '../../widgets/tabButton.dart';
 
 //[tabs]
 class Page1 extends StatefulWidget {

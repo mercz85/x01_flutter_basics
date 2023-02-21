@@ -5,7 +5,7 @@ import 'package:x01_flutter_basics/pages/Page3/flash_chat/screens/login_screen.d
 import 'package:x01_flutter_basics/pages/Page3/flash_chat/screens/registration_screen.dart';
 import 'package:x01_flutter_basics/pages/Page3/flash_chat/screens/wellcome_screen.dart';
 import 'package:x01_flutter_basics/pages/Page3/to_do/tasks_screen.dart';
-import 'package:x01_flutter_basics/widgets/TabButton.dart';
+import 'package:x01_flutter_basics/widgets/tabButton.dart';
 
 class Page3 extends StatefulWidget {
   Page3({Key? key}) : super(key: key);

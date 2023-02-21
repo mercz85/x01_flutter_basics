@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:x01_flutter_basics/pages/Page4/to_do_provider/tasks_screen.dart';
 
-import '../../widgets/TabButton.dart';
+import '../../widgets/tabButton.dart';
 
 class Page4 extends StatefulWidget {
   Page4({Key? key}) : super(key: key);
@@ -47,7 +48,7 @@ class _Page3State extends State<Page4> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TabButton(
-                text: 'Login BLoC',
+                text: 'TO DO Provider',
                 pageNumber: 0,
                 selectedPage: _selectedTab,
                 onPressed: () {
@@ -83,44 +84,14 @@ class _Page3State extends State<Page4> {
             },
             controller: _tabController,
             children: [
+              //TO DO Tab
               Container(
-                child: BlankScreen(),
+                child: TasksScreen(),
               ),
             ],
           ),
         )
       ],
-    );
-  }
-}
-
-class BlankScreen extends StatelessWidget {
-  BlankScreen({Key? key}) : super(key: key);
-
-  static const String id = '';
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.pink.shade300,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: const [
-            Center(
-              child: Text(
-                'EVA',
-                style: TextStyle(
-                  color: Colors.green,
-                  fontSize: 40,
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
     );
   }
 }
