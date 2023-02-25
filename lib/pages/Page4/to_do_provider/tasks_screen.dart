@@ -1,27 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:x01_flutter_basics/pages/Page4/to_do_provider/add_task_screen.dart';
+import 'package:x01_flutter_basics/pages/Page4/to_do_provider/models/task_data.dart';
 
 import 'components/task_list.dart';
 import 'models/task.dart';
 
-class TasksScreen extends StatefulWidget {
-  TasksScreen({Key? key}) : super(key: key);
-
-  static const String id = '';
-
-  @override
-  State<TasksScreen> createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [
-    Task(name: 'Buy milk'),
-    Task(name: 'buy eggs'),
-    Task(name: 'buy cat food')
-  ];
-
+class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //[provider] we pass the provider with its context
+    final taskDataProvider = Provider.of<TaskData>(context);
+
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       body: Padding(
@@ -55,7 +45,7 @@ class _TasksScreenState extends State<TasksScreen> {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    '${tasks.length} Tasks',
+                    '${Provider.of<TaskData>(context).tasksCount} Tasks', //[provider]
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 16,
@@ -77,7 +67,7 @@ class _TasksScreenState extends State<TasksScreen> {
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20),
                     )),
-                child: TasksList(tasks),
+                child: TasksList(), //[provider]
               ),
             ),
           ],
@@ -93,16 +83,13 @@ class _TasksScreenState extends State<TasksScreen> {
             //[BottomSheet size] isScrollControlled + SingleChildScrollView + MediaQuery
             isScrollControlled: true,
             context: context,
-            builder: (context) => SingleChildScrollView(
+            builder: (context2) => SingleChildScrollView(
               child: Container(
                 padding: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).viewInsets.bottom),
-                //[CallBack Function]
-                child: AddTaskScreen((newTaskTitle) {
-                  setState(() {
-                    tasks.add(Task(name: newTaskTitle));
-                  });
-                }),
+                    bottom: MediaQuery.of(context2).viewInsets.bottom),
+                //[provider] context lost -> here we have to pass the provider
+                // with a context, since showModalBottomSheet looses it
+                child: AddTaskScreen(taskDataProvider),
               ),
             ),
             shape: RoundedRectangleBorder(

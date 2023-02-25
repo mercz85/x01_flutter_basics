@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:x01_flutter_basics/pages/Page4/to_do_provider/models/task_data.dart';
 import 'package:x01_flutter_basics/pages/Page4/to_do_provider/tasks_screen.dart';
 
 import '../../widgets/tabButton.dart';
@@ -7,10 +9,10 @@ class Page4 extends StatefulWidget {
   Page4({Key? key}) : super(key: key);
 
   @override
-  State<Page4> createState() => _Page3State();
+  State<Page4> createState() => _Page4State();
 }
 
-class _Page3State extends State<Page4> {
+class _Page4State extends State<Page4> {
   int _selectedTab = 0;
   PageController? _tabController;
 
@@ -86,7 +88,11 @@ class _Page3State extends State<Page4> {
             children: [
               //TO DO Tab
               Container(
-                child: TasksScreen(),
+                //[provider] ChangeNotifierProvider at the top parent that shares the object TaskData between children
+                child: ChangeNotifierProvider(
+                  create: (BuildContext context) => TaskData(),
+                  child: TasksScreen(),
+                ),
               ),
             ],
           ),
