@@ -5,7 +5,7 @@ import 'package:x01_flutter_basics/pages/Page4/to_do_provider/models/task.dart';
 
 //[provider] ChangeNotifier
 class TaskData extends ChangeNotifier {
-  List<Task> _tasks = [Task(name: 'Buy cat food')];
+  List<Task> _tasks = [Task(name: 'Buy dog food')];
   //To avoid acces to list.add without using addTask (notifyListeners) we make
   // tasks private and create a get with an UnmodifableListView
   UnmodifiableListView<Task> get tasks => UnmodifiableListView(_tasks);
