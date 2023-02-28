@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:x01_flutter_basics/pages/Page1/my_card/my_card.dart';
 import 'package:x01_flutter_basics/pages/Page4/to_do_provider/models/task_data.dart';
 import 'package:x01_flutter_basics/pages/Page4/to_do_provider/tasks_screen.dart';
+import 'package:x01_flutter_basics/pages/Page4/workshop_inherited_widget/my_store_screen.dart';
 
 import '../../widgets/tabButton.dart';
 
@@ -57,14 +59,14 @@ class _Page4State extends State<Page4> {
                   _changeTab(0);
                 },
               ),
-              // TabButton(
-              //   text: "Tab2",
-              //   pageNumber: 1,
-              //   selectedPage: _selectedTab,
-              //   onPressed: () {
-              //     _changeTab(1);
-              //   },
-              // ),
+              TabButton(
+                text: "Inherited W",
+                pageNumber: 1,
+                selectedPage: _selectedTab,
+                onPressed: () {
+                  _changeTab(1);
+                },
+              ),
               // TabButton(
               //   text: "Tab3",
               //   pageNumber: 2,
@@ -93,6 +95,10 @@ class _Page4State extends State<Page4> {
                   create: (BuildContext context) => TaskData(),
                   child: TasksScreen(),
                 ),
+              ),
+              //[InheritedWidget] wrap MyStorePage with AppStateWidget
+              AppStateWidget(
+                child: MyStorePage(),
               ),
             ],
           ),
