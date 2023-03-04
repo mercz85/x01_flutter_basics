@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import '../app_state_scope.dart';
 
-//5. convert ShoppingCartIcon into StatelessWidget
+//[InheritedWidget] 5. convert ShoppingCartIcon into StatelessWidget
 class ShoppingCartIcon extends StatelessWidget {
   const ShoppingCartIcon({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    //We access our State
+    //[InheritedWidget] We access our State with AppStateScope.of
     final Set<String> itemsInCart = AppStateScope.of(context).itemsInCart;
 
     final bool hasPurchase = itemsInCart.isNotEmpty;

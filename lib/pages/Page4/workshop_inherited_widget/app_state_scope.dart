@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'app_state.dart';
 
-//2. We implement our InheritedWidget
+//[InheritedWidget] 2. We implement our AppStateScope - InheritedWidget
 class AppStateScope extends InheritedWidget {
   final AppState data;
 

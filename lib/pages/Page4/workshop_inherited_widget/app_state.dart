@@ -1,4 +1,4 @@
-//1. We create a customized state dataModel for our app
+//[InheritedWidget] 1. We create a customized state dataModel for our app
 class AppState {
   final List<String> productList;
   final Set<String> itemsInCart;

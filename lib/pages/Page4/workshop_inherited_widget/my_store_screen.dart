@@ -27,6 +27,30 @@ DartPad workshop base code: https://dartpad.dev/workshops.html?webserver=https:/
 //   );
 // }
 
+/*
+**[InheritedWidget] SUM-UP**
+
+AppStateWidget (stateful)
+    child: MyStorePage
+    _data (in state)
+    setState (functions that change state of data)
+    build: AppStateScope
+ 
+AppStateScope INHERITEDWIDGET (data + child) child is the widget we want to pass data (AppState)
+    of() returns the AppState
+    updateShoudlNotify()
+    child: MyStorePage passed from AppStateWidget
+  
+AppState
+    productList
+    itemsInCart
+    copyWith()
+  
+To Consume it down the tree at MyStorePage, ProductListWidget, ShoppingCartIcon
+    we use methods: AppStateWidget..addToCart
+    we get data: AppStateScope..productList
+*/
+
 class MyStorePage extends StatefulWidget {
   const MyStorePage({Key? key}) : super(key: key);
 
